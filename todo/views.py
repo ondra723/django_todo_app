@@ -1,3 +1,5 @@
+import datetime as dt
+
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
@@ -18,7 +20,13 @@ def addTodo(request):
     form = TodoForm(request.POST)
 
     if form.is_valid():
-        new_todo = Todo(text=request.POST['text'])
+        date = dt.date.fromisoformat(request.POST['date'])
+        time = dt.time.fromisoformat(request.POST['time'])
+
+        # date = dt.date(request.POST['date'])
+        # time = dt.time(request.POST['time'])
+
+        new_todo = Todo(text=request.POST['text'],date= dt.datetime.combine(date, time))
         new_todo.save()
 
     return redirect('index')
