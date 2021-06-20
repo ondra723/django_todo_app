@@ -24,7 +24,7 @@ def addTodo(request):
         time = dt.time.fromisoformat(request.POST['time'])
 
         # date = dt.date(request.POST['date'])
-        # time = dt.time(request.POST['time'])
+        # time = dt.time(request.POST['time']) create_
 
         new_todo = Todo(text=request.POST['text'],date= dt.datetime.combine(date, time))
         new_todo.save()

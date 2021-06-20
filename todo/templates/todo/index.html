@@ -27,8 +27,6 @@
 						<div class="form-group">
 							<div class="input-group">
 							  {{ form.text }}
-								<!--<input type="date" id="1234">
-								<input type="time" id="1235">-->
 								{{ form.date }}
 								{{ form.time }}
 							  <span class="input-group-btn">
@@ -59,10 +57,10 @@
 						{% for todo in todo_list %}
 							{% if todo.complete %}
 							<li class="list-group-item todo-completed">{{ todo.text }}</li>
-							<li class="list-group-item todo-completed">{{ todo.date }}</li>
+							<li class="list-group-item todo-completed">{{ todo.date|timeuntil }}</li>
 							{% else %}
 							<a href="{% url 'complete' todo.id %}"><li class="list-group-item">{{ todo.text }}</li></a>
-							<a href="{% url 'complete' todo.id %}"><li class="list-group-item">{{ todo.date }}</li></a>
+							<a href="{% url 'complete' todo.id %}"><li class="list-group-item">{{ todo.date|timeuntil }}</li></a>
 						{% endif %}
 						{% endfor %}
 					</ul>

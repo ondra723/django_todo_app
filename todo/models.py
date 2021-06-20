@@ -1,12 +1,15 @@
 
-from django.db.models import Model, CharField, BooleanField, DateTimeField
+from django.db import models
 from django.utils import timezone
 
 
-class Todo(Model):
-    text = CharField(max_length=40)
-    complete = BooleanField(default=False)
-    date = DateTimeField(default=timezone.now)
+class Todo(models.Model):
+    text = models.CharField(max_length=40)
+    complete = models.BooleanField(default=False)
+    date = models.DateTimeField()
+    # create_date = models.DateTimeField(auto_now_add=True)
+    # deadline_date = models.DateTimeField(auto_now_add=False, blank=True, null=True)
+
 
     def __str__(self):
         return self.text
