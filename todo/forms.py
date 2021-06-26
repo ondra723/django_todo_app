@@ -1,4 +1,7 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 from .widgets import DatePickerWidget, TimePickerWidget
 
 
@@ -18,3 +21,8 @@ class TodoForm(forms.Form):
     #     empty_label=("Choose Year", "Choose Month", "Choose Day"),
     # ),)
     # time = forms.TimeField()
+
+class CreateUserForm(UserCreationForm):
+	class Meta:
+		model = User
+		fields = ['username', 'email', 'password1', 'password2']
