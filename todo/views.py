@@ -4,11 +4,12 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.decorators.http import require_POST
 
 from .models import Todo
 from .forms import TodoForm, CreateUserForm
-
+from django.views.generic.edit import UpdateView
 
 def registerPage(request):
 	form = CreateUserForm()
@@ -88,3 +89,21 @@ def deleteAll(request):
     Todo.objects.all().delete()
 
     return redirect('index')
+
+class updateTask(UpdateView):
+	model = Todo
+	fields = ['text', 'complete', 'date']
+	success_url = reverse_lazy('index')
+	template_name = 'todo/update_task.html'
+	# 	todo = Todo.objects.get(id=todo_id)
+	#
+	# 	form = TodoForm()
+	#
+	# 	if request.method == 'POST':
+	# 		form = TodoForm(request.POST)
+	# 		if form.is_valid():
+	# 		form.save()
+	# 		return redirect('index')
+	#
+	# context = {'form': form}
+	# return render(request, 'todo/update_task.html', context)
