@@ -15,6 +15,9 @@ class TodoForm(forms.Form):
         widget=forms.TextInput(
             attrs={'class' : 'form-control', 'placeholder' : 'Enter todo e.g. Delete junk files', 'aria-label' : 'Todo', 'aria-describedby' : 'add-btn'}))
 
+    # date = forms.DateField(widget=DatePickerWidget, auto_now_add=True)
+    # time = forms.TimeField(widget=TimePickerWidget, auto_now_add=True)
+
     date = forms.DateField(widget=DatePickerWidget)
     time = forms.TimeField(widget=TimePickerWidget)
 

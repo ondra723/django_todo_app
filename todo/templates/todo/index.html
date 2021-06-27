@@ -61,11 +61,13 @@
 						{% for todo in todo_list %}
 							{% if todo.complete %}
                                 <a href="{% url 'update_task' todo.id %}">Update</a>
-							    <li class="list-group-item todo-completed">
+							    <a href="{% url 'uncomplete' todo.id %}">
+								<li class="list-group-item todo-completed">
                                     {{ todo.text }}
-                                    <!-- Zbývající čas:{{ todo.date|timeuntil }} -->
+                                    {%comment%} Zbývající čas:{{ todo.date|timeuntil }} {%endcomment%}
                                 </li>
-							    <a class="list-group-item todo-completed">{{ todo.date|timeuntil }}</a>
+								</a>
+								<a class="list-group-item todo-completed">{{ todo.date|timeuntil }}</a>
 							{% else %}
                                  <a href="{% url 'update_task' todo.id %}">Update</a>
 							    <a href="{% url 'complete' todo.id %}">
@@ -74,7 +76,7 @@
                                         <p style="text-align:right; color:red"><i>Zbývající čas:{{ todo.date|timeuntil }}</i></p>
                                     </li>
                                  </a>
-							<!--<a href="{% url 'complete' todo.id %}"><li class="list-group-item">{{ todo.date|timeuntil }}</li></a> -->
+							{%comment%}<a href="{% url 'complete' todo.id %}"><li class="list-group-item">{{ todo.date|timeuntil }}</li></a> {%endcomment%}
 						{% endif %}
 						{% endfor %}
 					</ul>

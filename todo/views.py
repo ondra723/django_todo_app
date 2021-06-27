@@ -49,11 +49,11 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def index(request):
-    todo_list = Todo.objects.order_by('id')
+    todo_list = Todo.objects.order_by('id').filter(user= request.user) # filtr zobrazí jen tásky, co dělal daný uživatel
 
     form = TodoForm()
 
-    context = {'todo_list' : todo_list, 'form' : form}
+    context = {'todo_list' : todo_list, 'form' : form, 'user' : request.user} # parametr user předá aktuálně přihlášeného uživatele, aby se zobrazili jen tásky od něho
 
     return render(request, 'todo/index.html', context)
 
@@ -68,7 +68,7 @@ def addTodo(request):
         # date = dt.date(request.POST['date'])
         # time = dt.time(request.POST['time']) create_
 
-        new_todo = Todo(text=request.POST['text'],date= dt.datetime.combine(date, time))
+        new_todo = Todo(text=request.POST['text'],date= dt.datetime.combine(date, time), user= request.user) # nový tásk bude mít sloupec user
         new_todo.save()
 
     return redirect('index')
@@ -76,6 +76,13 @@ def addTodo(request):
 def completeTodo(request, todo_id):
     todo = Todo.objects.get(pk=todo_id)
     todo.complete = True
+    todo.save()
+
+    return redirect('index')
+
+def uncompleteTodo(request, todo_id):
+    todo = Todo.objects.get(pk=todo_id)
+    todo.complete = False
     todo.save()
 
     return redirect('index')
