@@ -64,7 +64,7 @@
 							    <a href="{% url 'uncomplete' todo.id %}">
 								<li class="list-group-item todo-completed">
                                     {{ todo.text }}
-                                    {%comment%} Zbývající čas:{{ todo.date|timeuntil }} {%endcomment%}
+                                    <!-- Zbývající čas:{{ todo.date|timeuntil }} -->
                                 </li>
 								</a>
 								<a class="list-group-item todo-completed">{{ todo.date|timeuntil }}</a>
@@ -76,7 +76,7 @@
                                         <p style="text-align:right; color:red"><i>Zbývající čas:{{ todo.date|timeuntil }}</i></p>
                                     </li>
                                  </a>
-							{%comment%}<a href="{% url 'complete' todo.id %}"><li class="list-group-item">{{ todo.date|timeuntil }}</li></a> {%endcomment%}
+							<!-- <a href="{% url 'complete' todo.id %}"><li class="list-group-item">{{ todo.date|timeuntil }}</li></a> -->
 						{% endif %}
 						{% endfor %}
 					</ul>

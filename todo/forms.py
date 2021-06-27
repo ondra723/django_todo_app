@@ -21,6 +21,9 @@ class TodoForm(forms.Form):
     date = forms.DateField(widget=DatePickerWidget)
     time = forms.TimeField(widget=TimePickerWidget)
 
+    # date = forms.DateField(widget=DatePickerWidget, required= False, initial={'2021-06-28'}) # initial={''} pro případ, že chci vložit nějakou defaultní hodnotu
+    # time = forms.TimeField(widget=TimePickerWidget, required= False, initial={'16:55'})
+
     # date = forms.DateField(widget=SelectDateWidget(
     #     empty_label=("Choose Year", "Choose Month", "Choose Day"),
     # ),)
